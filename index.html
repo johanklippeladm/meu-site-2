@@ -1,11 +1,108 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Meu Site</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cobra Kai Dojo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: black;
+      color: white;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+    }
+    .logo-container {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      transition: all 2s ease;
+      z-index: 10;
+    }
+    .logo-container.active {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    .logo-container.exit {
+      transform: translate(-50%, -50%) scale(5);
+      opacity: 0;
+    }
+    .logo-container img {
+      width: 300px;
+      height: auto;
+    }
+    .site {
+      display: none;
+      padding: 20px;
+      animation: fadeIn 1.5s ease forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    header {
+      text-align: center;
+      font-size: 2em;
+      color: red;
+      margin-bottom: 20px;
+    }
+    section {
+      background: rgba(255, 0, 0, 0.1);
+      padding: 20px;
+      border: 2px solid red;
+      border-radius: 10px;
+    }
+    ul li {
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Bem-vindo ao meu site!</h1>
-  <p>Esse site foi feito com GitHub Pages e ChatGPT 😎</p>
+  <div class="logo-container" id="logo">
+    <img src="https://johanklippeladm.github.io/meu-site-2/logo-cobra-kai.png" alt="Logo Cobra Kai">
+  </div>
+
+  <div class="site" id="site">
+    <header>Dojo Cobra Kai</header>
+    <section>
+      <p>Sem piedade. Sem desculpas. Só vitória.</p>
+      <h2>Nossos Treinamentos:</h2>
+      <ul>
+        <li>Combate corpo a corpo</li>
+        <li>Disciplina e agilidade</li>
+        <li>Treino intensivo para defesa e ataque</li>
+        <li>Espírito de guerreiro</li>
+      </ul>
+    </section>
+  </div>
+
+  <audio id="kai-audio" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_bda569dd6a.mp3?filename=karate-kia-110260.mp3"></audio>
+
+  <script>
+    const logo = document.getElementById('logo');
+    const site = document.getElementById('site');
+    const audio = document.getElementById('kai-audio');
+
+    setTimeout(() => {
+      logo.classList.add('active');
+      audio.play();
+    }, 500);
+
+    setTimeout(() => {
+      logo.classList.remove('active');
+      logo.classList.add('exit');
+    }, 3000);
+
+    setTimeout(() => {
+      logo.style.display = 'none';
+      site.style.display = 'block';
+    }, 5000);
+  </script>
 </body>
 </html>
